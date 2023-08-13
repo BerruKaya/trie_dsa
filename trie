@@ -1,0 +1,44 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Datastructures.Trie;
+
+internal class Trie
+{
+   public bool IsEndOfWord{get; set;}
+
+  public Dictionary <char, Trie> Children{ get; set;} = new();   //null'a eşitlemedim, her seferinde yeni bir obje yaratsın
+
+ public void Add(string word)
+{
+Trie current= this;
+foreach(var c in word)
+{
+  if(!current.Children.TryGetValue(c,out var child))
+{
+child=new Trie();
+current.Children.Add(c, child);
+}
+current=child;
+}
+current.IsEndOfWord=ture;
+}
+
+public void Contains(string word)
+{
+Trie current=this;
+
+foreach(var c in word)
+{
+  if(!current.Children.TryGetValue(c, out current)
+{
+return false;
+}
+}
+return current.IsEndOfWord;
+}
+
+}
